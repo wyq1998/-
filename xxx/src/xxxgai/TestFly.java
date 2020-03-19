@@ -1,5 +1,7 @@
 package xxxgai;
 
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,14 +10,30 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JFrame;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 public class TestFly {
 
 	static Connection con = null;//连接
 	static PreparedStatement ps = null;//模板
 	static ResultSet rs = null;//结果集
-
-	public static void main(String[] args) throws Exception {
-		
+	//柱状图生成部分
+	static ChartPanel frame1;
+	private static int a=0;
+	private static int c=0;
+	private static int d=0;
+	
+	public static void main(String[] args) throws Exception {	   
 		System.out.println("******************************************防疫信息管理系统********************************************\n");
 		//show();
 		boolean bool = Dome();
@@ -60,7 +78,28 @@ public class TestFly {
 				else if(Situation.equals("无发热")) {
 					System.out.println("未发热人数为：");
 				}
-				showNum(selectSituation(Situation));
+				a=showNum(selectSituation(Situation));
+				//生成柱状图
+				System.out.println("******");
+				System.out.println("是否要生成柱状图：");
+				String b = scan.next();
+				System.out.println("******");
+				if(b.equals("是")) {
+					System.out.println("展示数据列表：");
+					c=showNum(listMessage());
+					d=c-a;
+					TestFly();
+					JFrame frame=new JFrame("该数据的数量统计");
+					   frame.setLayout(new GridLayout(2,2,5,5));
+					   frame.add(new TestFly().getChartPanel());   //添加柱形图
+					   frame.setBounds(0, 0, 500, 400);
+					   frame.setVisible(true);
+				}
+				else if(b.equals("否")) {
+					System.out.println("******");
+					System.out.println("退出中");
+					System.out.println("******");
+				}
 			}break;
 			case 2:{
 				System.out.println("是否为留校学生：");
@@ -72,7 +111,28 @@ public class TestFly {
 				else if(Situation1.equals("否")) {
 					System.out.println("不是留校学生人数为：");
 				}
-				showNum(selectSituation1(Situation1));
+				a=showNum(selectSituation1(Situation1));
+				//生成柱状图
+				System.out.println("******");
+				System.out.println("是否要生成柱状图：");
+				String b = scan.next();
+				System.out.println("******");
+				if(b.equals("是")) {
+					System.out.println("展示数据列表：");
+					c=showNum(listMessage());
+					d=c-a;
+					TestFly();
+					JFrame frame=new JFrame("该数据的数量统计");
+					   frame.setLayout(new GridLayout(2,2,5,5));
+					   frame.add(new TestFly().getChartPanel());   //添加柱形图
+					   frame.setBounds(0, 0, 600, 500);
+					   frame.setVisible(true);
+				}
+				else if(b.equals("否")) {
+					System.out.println("******");
+					System.out.println("退出中");
+					System.out.println("******");
+				}
 			}break;
 			case 3:{
 				System.out.println("是否为湖北籍：");
@@ -84,7 +144,28 @@ public class TestFly {
 				else if(Situation2.equals("否")) {
 					System.out.println("湖北籍人数为：");
 				}
-				showNum(selectSituation2(Situation2));
+				a=showNum(selectSituation2(Situation2));
+				//生成柱状图
+				System.out.println("******");
+				System.out.println("是否要生成柱状图：");
+				String b = scan.next();
+				System.out.println("******");
+				if(b.equals("是")) {
+					System.out.println("展示数据列表：");
+					c=showNum(listMessage());
+					d=c-a;
+					TestFly();
+					JFrame frame=new JFrame("该数据的数量统计");
+					   frame.setLayout(new GridLayout(2,2,5,5));
+					   frame.add(new TestFly().getChartPanel());   //添加柱形图
+					   frame.setBounds(0, 0, 600, 500);
+					   frame.setVisible(true);
+				}
+				else if(b.equals("否")) {
+					System.out.println("******");
+					System.out.println("退出中");
+					System.out.println("******");
+				}
 			}break;
 			case 4:{
 				System.out.println("是否与武汉疫区人员接触： ");
@@ -96,7 +177,28 @@ public class TestFly {
 				else if(Situation3.equals("否")) {
 					System.out.println("未与武汉疫区人员接触的人数为：");
 				}
-				showNum(selectSituation3(Situation3));
+				a=showNum(selectSituation3(Situation3));
+				//生成柱状图
+				System.out.println("******");
+				System.out.println("是否要生成柱状图：");
+				String b = scan.next();
+				System.out.println("******");
+				if(b.equals("是")) {
+					System.out.println("展示数据列表：");
+					c=showNum(listMessage());
+					d=c-a;
+					TestFly();
+					JFrame frame=new JFrame("该数据的数量统计");
+					   frame.setLayout(new GridLayout(2,2,5,5));
+					   frame.add(new TestFly().getChartPanel());   //添加柱形图
+					   frame.setBounds(0, 0, 600, 500);
+					   frame.setVisible(true);
+				}
+				else if(b.equals("否")) {
+					System.out.println("******");
+					System.out.println("退出中");
+					System.out.println("******");
+				}
 			}break;
 			case 5:{
 				System.out.println("是否与湖北疫区人员接触：");
@@ -108,7 +210,28 @@ public class TestFly {
 				else if(Situation4.equals("否")) {
 					System.out.println("未与湖北疫区人员接触的人数为：");
 				}
-				showNum(selectSituation4(Situation4));
+				a=showNum(selectSituation4(Situation4));
+				//生成柱状图
+				System.out.println("******");
+				System.out.println("是否要生成柱状图：");
+				String b = scan.next();
+				System.out.println("******");
+				if(b.equals("是")) {
+					System.out.println("展示数据列表：");
+					c=showNum(listMessage());
+					d=c-a;
+					TestFly();
+					JFrame frame=new JFrame("该数据的数量统计");
+					   frame.setLayout(new GridLayout(2,2,5,5));
+					   frame.add(new TestFly().getChartPanel());   //添加柱形图
+					   frame.setBounds(0, 0, 600, 500);
+					   frame.setVisible(true);
+				}
+				else if(b.equals("否")) {
+					System.out.println("******");
+					System.out.println("退出中");
+					System.out.println("******");
+				}
 			}break;
 			case 6:{
 				System.out.println("是否在武汉：");
@@ -120,7 +243,28 @@ public class TestFly {
 				else if(Situation5.equals("否")) {
 					System.out.println("未在武汉的人数为：");
 				}
-				showNum(selectSituation5(Situation5));
+				a=showNum(selectSituation5(Situation5));
+				//生成柱状图
+				System.out.println("******");
+				System.out.println("是否要生成柱状图：");
+				String b = scan.next();
+				System.out.println("******");
+				if(b.equals("是")) {
+					System.out.println("展示数据列表：");
+					c=showNum(listMessage());
+					d=c-a;
+					TestFly();
+					JFrame frame=new JFrame("该数据的数量统计");
+					   frame.setLayout(new GridLayout(2,2,5,5));
+					   frame.add(new TestFly().getChartPanel());   //添加柱形图
+					   frame.setBounds(0, 0, 600, 500);
+					   frame.setVisible(true);
+				}
+				else if(b.equals("否")) {
+					System.out.println("******");
+					System.out.println("退出中");
+					System.out.println("******");
+				}
 			}break;
 			case 7:{
 				System.out.println("是否在湖北：");
@@ -132,7 +276,28 @@ public class TestFly {
 				else if(Situation6.equals("否")) {
 					System.out.println("未在湖北的人数为：");
 				}
-				showNum(selectSituation6(Situation6));
+				a=showNum(selectSituation6(Situation6));
+				//生成柱状图
+				System.out.println("******");
+				System.out.println("是否要生成柱状图：");
+				String b = scan.next();
+				System.out.println("******");
+				if(b.equals("是")) {
+					System.out.println("展示数据列表：");
+					c=showNum(listMessage());
+					d=c-a;
+					TestFly();
+					JFrame frame=new JFrame("该数据的数量统计");
+					   frame.setLayout(new GridLayout(2,2,5,5));
+					   frame.add(new TestFly().getChartPanel());   //添加柱形图
+					   frame.setBounds(0, 0, 600, 500);
+					   frame.setVisible(true);
+				}
+				else if(b.equals("否")) {
+					System.out.println("******");
+					System.out.println("退出中");
+					System.out.println("******");
+				}
 			}break;
 			case 8:{
 				System.out.println("是否今天从外地返校：");
@@ -144,7 +309,28 @@ public class TestFly {
 				else if(Situation7.equals("否")) {
 					System.out.println("未返校人数为：");
 				}
-				showNum(selectSituation7(Situation7));
+				a=showNum(selectSituation7(Situation7));
+				//生成柱状图
+				System.out.println("******");
+				System.out.println("是否要生成柱状图：");
+				String b = scan.next();
+				System.out.println("******");
+				if(b.equals("是")) {
+					System.out.println("展示数据列表：");
+					c=showNum(listMessage());
+					d=c-a;
+					TestFly();
+					JFrame frame=new JFrame("该数据的数量统计");
+					   frame.setLayout(new GridLayout(2,2,5,5));
+					   frame.add(new TestFly().getChartPanel());   //添加柱形图
+					   frame.setBounds(0, 0, 600, 500);
+					   frame.setVisible(true);
+				}
+				else if(b.equals("否")) {
+					System.out.println("******");
+					System.out.println("退出中");
+					System.out.println("******");
+				}
 			}break;
 		}			
 		}break;
@@ -190,7 +376,42 @@ public class TestFly {
 		//scan.close();
 		return true;
 	}
+    //生成柱状图
+	private static void TestFly() {
+		CategoryDataset dataset = getDataSet();//将获得的数据传递给CategoryDataset类的对象
+	       JFreeChart chart = ChartFactory.createBarChart3D(
+	      		                 "人数统计表", // 图表标题
+	                           "人数信息", // 目录轴的显示标签
+	                           "人数/个", // 数值轴的显示标签
+	                           dataset, // 数据集
+	                           PlotOrientation.VERTICAL, // 图表方向：水平、垂直
+	                           true, // 是否显示图例(对于简单的柱状图必须是false)
+	                           false,  // 是否生成工具
+	                           false  // 是否生成URL链接
+	                           );
+	      
+	       CategoryPlot plot=chart.getCategoryPlot();//获取图表区域对象
+	       CategoryAxis domainAxis=plot.getDomainAxis();         //水平底部列表
+	        domainAxis.setLabelFont(new Font("黑体",Font.BOLD,14));         //水平底部标题
+	        domainAxis.setTickLabelFont(new Font("宋体",Font.BOLD,12));  //垂直标题
+	        ValueAxis rangeAxis=plot.getRangeAxis();//获取柱状
+	        rangeAxis.setLabelFont(new Font("黑体",Font.BOLD,15));
+	         chart.getLegend().setItemFont(new Font("黑体", Font.BOLD, 15));
+	         chart.getTitle().setFont(new Font("宋体",Font.BOLD,20));//设置标题字体
 
+	        frame1=new ChartPanel(chart,true);  //这里也可以用chartFrame,可以直接生成一个独立的Frame
+	        
+		}	
+		   private static CategoryDataset getDataSet() {
+	          DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+	          dataset.addValue(a,"situation", "situation");
+	          dataset.addValue(d,"no-situation", "no-situation");
+	          return dataset;
+		   }
+		   public ChartPanel getChartPanel(){
+			   return frame1;
+		
+		   	}
 	//注册驱动，获取连接
 	public static Connection getCon() throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -239,7 +460,7 @@ public class TestFly {
 		System.out.println("\n********************************版权所有：wyq***********************************\n");
 	}
 	//获取此数据的人数
-	public static void showNum(Set<Anti> set){
+	public static int showNum(Set<Anti> set){
 		int x=0;
 		for( Anti value : set){
 			x++;
@@ -248,6 +469,7 @@ public class TestFly {
 		System.out.println("\n***数据统计***\n");
 		System.out.println("共有"+x+"人");
 		System.out.println("\n***数据统计***\n");
+		return x;
 	}	
 	//列出防疫信息
 	public static Set<Anti> listMessage() throws Exception{
